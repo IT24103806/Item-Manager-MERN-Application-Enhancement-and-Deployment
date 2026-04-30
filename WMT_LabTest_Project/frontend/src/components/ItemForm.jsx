@@ -2,13 +2,19 @@ import { useState } from "react";
 
 function ItemForm({ initialValues, onSubmit, submitText }) {
   const [formData, setFormData] = useState(
-    initialValues || {
-      name: "",
-      category: "",
-      price: "",
-      description: "",
-      imageUrl: "",
-    }
+    initialValues
+      ? {
+          availabilityStatus: "Available",
+          ...initialValues,
+        }
+      : {
+          name: "",
+          category: "",
+          price: "",
+          description: "",
+          availabilityStatus: "Available",
+          imageUrl: "",
+        }
   );
 
   const handleChange = (e) => {
@@ -51,6 +57,17 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
         onChange={handleChange}
         required
       />
+
+      <label>Availability Status</label>
+      <select
+        name="availabilityStatus"
+        value={formData.availabilityStatus}
+        onChange={handleChange}
+        required
+      >
+        <option value="Available">Available</option>
+        <option value="Unavailable">Unavailable</option>
+      </select>
 
       <label>Image URL</label>
       <input name="imageUrl" value={formData.imageUrl} onChange={handleChange} />
