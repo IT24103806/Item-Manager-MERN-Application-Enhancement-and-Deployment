@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ItemForm({ initialValues, onSubmit, submitText }) {
   const [formData, setFormData] = useState(
@@ -16,6 +16,15 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
           imageUrl: "",
         }
   );
+
+  useEffect(() => {
+    if (initialValues) {
+      setFormData({
+        availabilityStatus: "Available",
+        ...initialValues,
+      });
+    }
+  }, [initialValues]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
