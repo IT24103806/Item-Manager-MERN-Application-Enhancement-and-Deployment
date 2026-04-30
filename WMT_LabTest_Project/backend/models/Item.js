@@ -22,6 +22,13 @@ const itemSchema = new mongoose.Schema(
       required: [true, "Description is required"],
       trim: true,
     },
+    availabilityStatus: {
+      type: String,
+      required: [true, "Availability status is required"],
+      enum: ["Available", "Unavailable"],
+      default: "Available",
+      trim: true,
+    },
     imageUrl: {
       type: String,
       default: "",
